@@ -1,55 +1,46 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!--
+Sync Impact Report:
+- Version change: N/A → 1.0.0 (initial constitution creation)
+- Added principles:
+  1. Clarity for Intermediate AI Developers
+  2. Accuracy and Reproducibility
+  3. Security-First Approach
+  4. Seamless RAG Integration
+  5. Spec-Driven Development Adherence
+  6. Locked Tech Stack Compliance
+- Added sections: Technical Standards and Constraints, Development Workflow and Quality Assurance
+- Templates requiring updates: ✅ No template updates required - templates use generic placeholders
+- Follow-up TODOs: None
+-->
+# Docusaurus Book with Integrated RAG Chatbot Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### Clarity for Intermediate AI Developers
+Provide step-by-step guidance and clear explanations for intermediate AI developers, ensuring all concepts and implementations are accessible and well-documented.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### Accuracy and Reproducibility
+Maintain production-ready code with strict accuracy, ensuring all implementations are reproducible and reliable for real-world applications.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### Security-First Approach
+Implement secure handling of APIs, databases, and user data as a foundational requirement in all system designs and implementations.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### Seamless RAG Integration
+Ensure seamless integration of RAG chatbot capabilities supporting both full-book and selected-text queries with optimal performance.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### Spec-Driven Development Adherence
+Strictly adhere to spec-driven development methodology and project requirements throughout the implementation lifecycle.
 
-### [PRINCIPLE_6_NAME]
+### Locked Tech Stack Compliance
+Adhere to the locked technology stack without deviations, utilizing specified tools and services exclusively as defined in project requirements.
 
+## Technical Standards and Constraints
+Content: Docusaurus MDX with Mermaid diagrams, testable code blocks, and chapter summaries. Code: TypeScript/Python, error handling, logging, input validation, inline comments. RAG stack: OpenAI Agents/ChatKit SDKs, FastAPI backend, Neon Serverless Postgres, Qdrant Cloud Free Tier. Testing: ≥80% backend coverage (pytest), frontend component tests, E2E RAG accuracy. Deployment: GitHub Pages for site, serverless-compatible backend. Constraints: Free-tier only where mandated, Chatbot response time < 5s, Responsive, embedded UI with selected-text support.
 
-[PRINCIPLE__DESCRIPTION]
-
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
-
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
-
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
-
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+## Development Workflow and Quality Assurance
+Implementation workflow: Content-first approach with Docusaurus MDX, followed by RAG backend integration. Review process: Code reviews must verify security practices, performance requirements, and spec compliance. Quality gates: All code must pass security scanning, performance benchmarks (response time < 5s), and achieve ≥80% test coverage before merging.
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
+All implementations must comply with the specified tech stack requirements. Changes to the technology stack require formal amendment to this constitution. All PRs/reviews must verify compliance with security standards, performance requirements, and architectural constraints. All features must be tested for both general and selected-text chatbot modes.
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
-
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Version**: 1.0.0 | **Ratified**: 2025-12-16 | **Last Amended**: 2025-12-16

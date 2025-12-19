@@ -1,0 +1,74 @@
+.textbookModule {
+  padding: 2rem 0;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.header {
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #eee;
+}
+
+.header h1 {
+  margin-bottom: 0.5rem;
+  color: #25c2a0;
+}
+
+.category {
+  display: inline-block;
+  background-color: #f0f8ff;
+  color: #25c2a0;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  margin-right: 1rem;
+}
+
+.duration {
+  display: inline-block;
+  background-color: #fff8f0;
+  color: #d97706;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+
+.content {
+  line-height: 1.6;
+}
+
+.content h2 {
+  color: #25c2a0;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.5rem;
+  margin-top: 2rem;
+}
+
+.content h3 {
+  color: #329880;
+  margin-top: 1.5rem;
+}
+
+.content pre {
+  background-color: #2d3748;
+  color: #f7fafc;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+}
+
+.content code {
+  background-color: #f7fafc;
+  color: #e53e3e;
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.25rem;
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+}
+
+.content blockquote {
+  border-left: 4px solid #25c2a0;
+  padding-left: 1rem;
+  margin: 1rem 0;
+  color: #666;
+}

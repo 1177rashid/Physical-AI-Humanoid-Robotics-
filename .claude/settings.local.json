@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(.specify/scripts/powershell/setup-plan.ps1 -Json)",
+      "Bash(.specify/scripts/powershell/update-agent-context.ps1 -AgentType claude)",
+      "Bash(.specify/scripts/powershell/check-prerequisites.ps1 -Json)",
+      "Bash(dir \"F:\\\\Rashid A1\\\\ai_native_book\\\\specs\\\\001-ai-native-textbook\\\\contracts\"\")",
+      "Bash(.specify/scripts/powershell/check-prerequisites.ps1 -Json -RequireTasks -IncludeTasks)",
+      "mcp__context7__resolve-library-id"
+    ]
+  }
+}

@@ -1,0 +1,47 @@
+<svg width="400" height="600" viewBox="0 0 400 600" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="400" height="600" fill="#0a1f3d"/>
+
+  <!-- Head -->
+  <rect x="150" y="50" width="100" height="120" rx="20" ry="20" fill="#e0e0e0" stroke="#aaaaaa" stroke-width="4"/>
+  
+  <!-- Eyes -->
+  <circle cx="180" cy="100" r="20" fill="#00ffff" opacity="0.8">
+    <animate attributeName="opacity" values="0.8;1;0.8" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="220" cy="100" r="20" fill="#00ffff" opacity="0.8">
+    <animate attributeName="opacity" values="0.8;1;0.8" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  
+  <!-- Antenna -->
+  <line x1="200" y1="140" x2="200" y2="20" stroke="#aaaaaa" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="200" cy="10" r="10" fill="#ff00ff"/>
+
+  <!-- Body -->
+  <rect x="120" y="180" width="160" height="200" rx="30" ry="30" fill="#c0c0c0" stroke="#888888" stroke-width="4"/>
+  
+  <!-- Chest panel -->
+  <rect x="150" y="220" width="100" height="120" rx="10" fill="#0088ff" opacity="0.6"/>
+  <circle cx="200" cy="280" r="30" fill="#00ffff" opacity="0.9">
+    <animate attributeName="r" values="30;35;30" dur="3s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- Arms -->
+  <rect x="80" y="200" width="40" height="150" rx="20" fill="#d0d0d0" stroke="#aaaaaa" stroke-width="4"/>
+  <rect x="280" y="200" width="40" height="150" rx="20" fill="#d0d0d0" stroke="#aaaaaa" stroke-width="4"/>
+  
+  <!-- Hands -->
+  <circle cx="100" cy="360" r="30" fill="#aaaaaa"/>
+  <circle cx="300" cy="360" r="30" fill="#aaaaaa"/>
+
+  <!-- Legs -->
+  <rect x="150" y="380" width="50" height="180" rx="25" fill="#b0b0b0" stroke="#888888" stroke-width="4"/>
+  <rect x="200" y="380" width="50" height="180" rx="25" fill="#b0b0b0" stroke="#888888" stroke-width="4"/>
+  
+  <!-- Feet -->
+  <ellipse cx="175" cy="570" rx="50" ry="20" fill="#888888"/>
+  <ellipse cx="225" cy="570" rx="50" ry="20" fill="#888888"/>
+
+  <!-- Title -->
+  <text x="200" y="40" font-size="24" fill="#ffffff" text-anchor="middle" font-family="Arial">Humanoid Robot</text>
+</svg>

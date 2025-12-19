@@ -1,0 +1,61 @@
+---
+sidebar_position: 1
+title: ROS 2 Nervous System
+---
+
+# ROS 2 Nervous System
+
+This module introduces the Robot Operating System 2 (ROS 2) as the nervous system for humanoid robots. ROS 2 provides the communication framework that connects sensors, actuators, and processing units in a coordinated system.
+
+## Introduction to ROS 2
+
+ROS 2 is a flexible framework for writing robot software. It's a collection of tools, libraries, and conventions that aim to simplify the task of creating complex and robust robot behavior across a wide variety of robot platforms.
+
+### Key Features of ROS 2
+
+- **Communication**: Message passing between robot processes
+- **Tools**: Utilities for introspection and debugging
+- **Capabilities**: Hardware abstraction and device drivers
+- **Package Management**: Building and distribution tools
+
+## Architecture
+
+ROS 2 uses a distributed architecture where multiple processes (nodes) communicate with each other using messages passed through topics, services, and actions.
+
+### Nodes
+
+Nodes are the fundamental building blocks of a ROS 2 program. Each node is a process that performs computation. Nodes communicate with other nodes by passing messages through topics, services, and actions.
+
+### Topics and Messages
+
+Topics are named buses over which nodes exchange messages. Publishers send messages to topics, and subscribers receive messages from topics.
+
+### Services
+
+Services provide a request-response mechanism for inter-process communication. A service client sends a request to a service server and waits for a response.
+
+### Actions
+
+Actions are similar to services, but they are designed for long-running tasks that may take a significant amount of time to complete.
+
+## ROS 2 in Humanoid Robotics
+
+For humanoid robots, ROS 2 serves as the nervous system by coordinating:
+
+- Sensor data acquisition and processing
+- Motor control and feedback
+- Perception and planning modules
+- Human-robot interaction interfaces
+
+## Learning Objectives
+
+By the end of this module, you should be able to:
+1. Understand the ROS 2 architecture and its components
+2. Create and run basic ROS 2 nodes
+3. Implement publishers and subscribers
+4. Use services and actions for robot communication
+5. Appreciate how ROS 2 coordinates humanoid robot systems
+
+## Hands-on Lab
+
+In the associated lab exercise, you'll create a simple ROS 2 package that implements a publisher-subscriber pair to simulate sensor and actuator communication in a humanoid robot system.

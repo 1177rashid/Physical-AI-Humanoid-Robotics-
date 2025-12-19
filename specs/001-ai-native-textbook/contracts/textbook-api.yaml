@@ -1,0 +1,466 @@
+openapi: 3.0.0
+info:
+  title: AI-Native Textbook API
+  description: API for the AI-Native Textbook on Physical AI & Humanoid Robotics
+  version: 1.0.0
+servers:
+  - url: https://api.ai-textbook.example.com/v1
+    description: Production server
+  - url: http://localhost:8000/v1
+    description: Development server
+
+paths:
+  /textbook/modules:
+    get:
+      summary: List all textbook modules
+      description: Retrieve a list of all available textbook modules
+      parameters:
+        - name: category
+          in: query
+          description: Filter by category
+          schema:
+            type: string
+            enum: [foundations, ros2-nervous-system, digital-twins, nvidia-isaac, vision-language-action, humanoid-control, capstone]
+        - name: published
+          in: query
+          description: Filter by publication status
+          schema:
+            type: boolean
+            default: true
+      responses:
+        '200':
+          description: List of textbook modules
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/TextbookModule'
+                  total:
+                    type: integer
+        '400':
+          description: Invalid parameters
+
+  /textbook/modules/{id}:
+    get:
+      summary: Get a specific textbook module
+      description: Retrieve detailed information about a specific textbook module
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Module identifier
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Textbook module details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TextbookModule'
+        '404':
+          description: Module not found
+
+  /textbook/modules/{id}/labs:
+    get:
+      summary: Get labs for a module
+      description: Retrieve all lab exercises associated with a specific module
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Module identifier
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of lab exercises for the module
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LabExercise'
+        '404':
+          description: Module not found
+
+  /textbook/modules/{id}/resources:
+    get:
+      summary: Get learning resources for a module
+      description: Retrieve all learning resources associated with a specific module
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Module identifier
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of learning resources for the module
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LearningResource'
+        '404':
+          description: Module not found
+
+  /chat:
+    post:
+      summary: Send message to RAG chatbot
+      description: Send a message to the textbook's RAG-enhanced chatbot
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - message
+                - session_id
+              properties:
+                message:
+                  type: string
+                  description: The user's message to the chatbot
+                  example: "Explain ROS 2 action servers"
+                session_id:
+                  type: string
+                  description: Chat session identifier
+                context:
+                  type: string
+                  description: Optional context (e.g., current textbook section)
+      responses:
+        '200':
+          description: Chatbot response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChatResponse'
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthorized (if authentication required)
+
+  /chat/session:
+    post:
+      summary: Create new chat session
+      description: Start a new conversation session with the RAG chatbot
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                initial_query:
+                  type: string
+                  description: Optional initial query for the session
+      responses:
+        '200':
+          description: New chat session created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  session_id:
+                    type: string
+                  title:
+                    type: string
+
+  /progress:
+    get:
+      summary: Get user progress
+      description: Retrieve the current user's progress through the textbook
+      responses:
+        '200':
+          description: User progress information
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  modules:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/UserProgress'
+                  overall_completion:
+                    type: number
+                    format: float
+                    description: Overall completion percentage (0-100)
+        '401':
+          description: Unauthorized
+
+  /progress/{module_id}:
+    post:
+      summary: Update module progress
+      description: Update progress for a specific textbook module
+      parameters:
+        - name: module_id
+          in: path
+          required: true
+          description: Module identifier
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - status
+              properties:
+                status:
+                  type: string
+                  enum: [not_started, in_progress, completed]
+                completion_percentage:
+                  type: integer
+                  minimum: 0
+                  maximum: 100
+      responses:
+        '200':
+          description: Progress updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserProgress'
+        '400':
+          description: Invalid progress status
+        '401':
+          description: Unauthorized
+        '404':
+          description: Module not found
+
+  /labs/submit:
+    post:
+      summary: Submit lab exercise
+      description: Submit a completed lab exercise for evaluation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - lab_exercise_id
+                - submission_content
+              properties:
+                lab_exercise_id:
+                  type: string
+                  description: ID of the lab exercise being submitted
+                submission_content:
+                  type: string
+                  description: The user's solution/implementation
+                submission_files:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      path:
+                        type: string
+                      content:
+                        type: string
+      responses:
+        '200':
+          description: Lab submission received
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserLabSubmission'
+        '400':
+          description: Invalid submission
+        '401':
+          description: Unauthorized
+
+components:
+  schemas:
+    TextbookModule:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        slug:
+          type: string
+        content:
+          type: string
+        category:
+          type: string
+          enum: [foundations, ros2-nervous-system, digital-twins, nvidia-isaac, vision-language-action, humanoid-control, capstone]
+        prerequisites:
+          type: array
+          items:
+            type: string
+        learning_objectives:
+          type: array
+          items:
+            type: string
+        estimated_duration:
+          type: integer
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        is_published:
+          type: boolean
+
+    LabExercise:
+      type: object
+      properties:
+        id:
+          type: string
+        module_id:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        difficulty:
+          type: string
+          enum: [beginner, intermediate, advanced]
+        instructions:
+          type: string
+        code_samples:
+          type: array
+          items:
+            type: object
+            properties:
+              language:
+                type: string
+              content:
+                type: string
+        expected_outcomes:
+          type: array
+          items:
+            type: string
+        prerequisites:
+          type: array
+          items:
+            type: string
+        simulation_required:
+          type: boolean
+        estimated_duration:
+          type: integer
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        is_published:
+          type: boolean
+
+    LearningResource:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        resource_type:
+          type: string
+          enum: [code_sample, diagram, simulation_config, documentation, video, dataset]
+        content:
+          type: string
+        file_path:
+          type: string
+        module_id:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        is_published:
+          type: boolean
+
+    ChatResponse:
+      type: object
+      properties:
+        response:
+          type: string
+          description: The chatbot's response to the user's message
+        sources:
+          type: array
+          items:
+            type: string
+          description: List of textbook sections referenced in the response
+        timestamp:
+          type: string
+          format: date-time
+
+    UserProgress:
+      type: object
+      properties:
+        id:
+          type: string
+        user_id:
+          type: string
+        module_id:
+          type: string
+        status:
+          type: string
+          enum: [not_started, in_progress, completed]
+        completion_percentage:
+          type: integer
+        started_at:
+          type: string
+          format: date-time
+        completed_at:
+          type: string
+          format: date-time
+        last_accessed_at:
+          type: string
+          format: date-time
+        time_spent:
+          type: integer
+
+    UserLabSubmission:
+      type: object
+      properties:
+        id:
+          type: string
+        user_id:
+          type: string
+        lab_exercise_id:
+          type: string
+        submission_content:
+          type: string
+        submission_files:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              path:
+                type: string
+        status:
+          type: string
+          enum: [submitted, grading, graded, revised]
+        grade:
+          type: integer
+        feedback:
+          type: string
+        submitted_at:
+          type: string
+          format: date-time
+        graded_at:
+          type: string
+          format: date-time

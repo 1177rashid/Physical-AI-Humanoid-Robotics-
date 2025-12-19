@@ -1,0 +1,85 @@
+---
+sidebar_position: 2
+title: Mermaid Diagram Example
+---
+
+# Mermaid Diagram Example
+
+This page demonstrates how to use Mermaid diagrams in the AI-Native Textbook.
+
+## Sequence Diagram
+
+```mermaid
+sequenceDiagram
+    participant Student
+    participant Frontend
+    participant Backend
+    participant Database
+
+    Student->>Frontend: Request textbook content
+    Frontend->>Backend: GET /textbook/modules
+    Backend->>Database: Query modules
+    Database-->>Backend: Return modules
+    Backend-->>Frontend: Module data
+    Frontend-->>Student: Display content
+```
+
+## Flowchart
+
+```mermaid
+flowchart TD
+    A[Start Learning] --> B[Access Textbook Content]
+    B --> C{Choose Topic}
+    C -->|ROS 2| D[Learn ROS 2 Concepts]
+    C -->|Simulation| E[Explore Gazebo]
+    C -->|Isaac| F[NVIDIA Isaac]
+    D --> G[Hands-on Lab]
+    E --> G
+    F --> G
+    G --> H[Capstone Project]
+    H --> I[Complete Course]
+```
+
+## Class Diagram
+
+```mermaid
+classDiagram
+    class TextbookModule {
+        +String id
+        +String title
+        +String slug
+        +String content
+        +String category
+        +List~String~ prerequisites
+        +List~String~ learningObjectives
+        +Integer estimatedDuration
+        +Boolean isPublished
+    }
+
+    class LearningResource {
+        +String id
+        +String title
+        +String resourceType
+        +String content
+        +String filePath
+        +UUID moduleId
+        +Boolean isPublished
+    }
+
+    TextbookModule ||--o{ LearningResource : contains
+```
+
+## State Diagram
+
+```mermaid
+stateDiagram-v2
+    [*] --> Learning
+    Learning --> Practicing : Start Lab
+    Practicing --> Learning : Need More Theory
+    Learning --> Applying : Feel Confident
+    Practicing --> Applying : Complete Lab
+    Applying --> Completed : Finish Capstone
+    Completed --> [*]
+```
+
+Mermaid diagrams provide an excellent way to visualize complex concepts in robotics and AI, making the learning experience more engaging and comprehensible.

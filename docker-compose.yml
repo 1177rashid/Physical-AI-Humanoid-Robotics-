@@ -1,0 +1,59 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15
+    container_name: textbook_postgres
+    environment:
+      POSTGRES_DB: textbook_db
+      POSTGRES_USER: textbook_user
+      POSTGRES_PASSWORD: textbook_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U textbook_user -d textbook_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  qdrant:
+    image: qdrant/qdrant:v1.7.4
+    container_name: textbook_qdrant
+    ports:
+      - "6333:6333"
+      - "6334:6334"
+    volumes:
+      - qdrant_data:/qdrant/storage
+    environment:
+      QDRANT_API_KEY: textbook_api_key
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:6333/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: textbook_backend
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql://textbook_user:textbook_password@postgres:5432/textbook_db
+      - QDRANT_URL=http://qdrant:6333
+      - QDRANT_API_KEY=textbook_api_key
+    depends_on:
+      postgres:
+        condition: service_healthy
+      qdrant:
+        condition: service_healthy
+    volumes:
+      - ./backend:/app
+
+volumes:
+  postgres_data:
+  qdrant_data:

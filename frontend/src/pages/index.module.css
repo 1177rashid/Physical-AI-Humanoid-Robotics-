@@ -1,0 +1,141 @@
+.heroBanner {
+  background: linear-gradient(135deg, #0a1f3d 0%, #001233 100%);
+  padding: 4rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.heroBanner::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: url('https://thumbs.dreamstime.com/b/glowing-tech-circuit-lines-dark-blue-background-digital-grid-futuristic-light-pulse-center-389376521.jpg');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.3;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.seriesTag {
+  text-align: center;
+  color: #a0d8ff;
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  margin-bottom: 2rem;
+  background: rgba(255,255,255,0.1);
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+}
+
+.heroContent {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.bookCoverWrapper {
+  flex: 1;
+  min-width: 300px;
+  text-align: center;
+}
+
+.bookCover {
+  max-width: 100%;
+  height: auto;
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+  transform: perspective(1000px) rotateY(-10deg);
+  transition: transform 0.3s;
+}
+
+.bookCover:hover {
+  transform: perspective(1000px) rotateY(-5deg) scale(1.03);
+}
+
+.textContent {
+  flex: 1.5;
+  min-width: 300px;
+  color: white;
+}
+
+.mainTitle {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin: 0 0 1rem 0;
+  line-height: 1.2;
+}
+
+.subtitle {
+  font-size: 1.6rem;
+  color: #b0d0ff;
+  margin-bottom: 2rem;
+  line-height: 1.5;
+}
+
+.badges {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+}
+
+.badge {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  background: rgba(255,255,255,0.1);
+  padding: 0.8rem 1.2rem;
+  border-radius: 50px;
+  backdrop-filter: blur(10px);
+  font-size: 1rem;
+}
+
+.badgeIcon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.buttons {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.exploreBtn {
+  background: transparent;
+  border-color: #60a5fa !important;
+  color: #60a5fa;
+}
+
+.startBtn {
+  background: white;
+  color: #001233;
+}
+
+@media (max-width: 996px) {
+  .heroContent {
+    flex-direction: column;
+    text-align: center;
+  }
+  .mainTitle {
+    font-size: 2.8rem;
+  }
+  .badges {
+    justify-content: center;
+  }
+  .buttons {
+    justify-content: center;
+  }
+}

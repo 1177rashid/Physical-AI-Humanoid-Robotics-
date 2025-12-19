@@ -1,0 +1,22 @@
+# Dependencies
+node_modules/
+
+# Production builds
+build/
+
+# Logs
+*.log
+
+# Environment
+.env*
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docusaurus
+.docusaurus/

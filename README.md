@@ -52,7 +52,14 @@ The GitHub Actions workflow is already configured in `.github/workflows/deploy.y
    - projectName should be `Physical-AI-Humanoid-Robotics-`
    - organizationName should be `1177rashid`
 
-2. Enable GitHub Pages in your repository settings:
+2. Regenerate the build files to apply configuration changes:
+   ```bash
+   cd frontend
+   npm run build
+   ```
+   This step is crucial - the build files must be regenerated to reflect the new configuration.
+
+3. Enable GitHub Pages in your repository settings:
    - Go to Settings > Pages
    - Select "GitHub Actions" as the source
 

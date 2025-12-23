@@ -45,36 +45,12 @@ The frontend application can be deployed to GitHub Pages using the following met
 
 ### Method 1: Using GitHub Actions (Recommended)
 
-1. Create a `.github/workflows/deploy.yml` file with the following content:
+The GitHub Actions workflow is already configured in `.github/workflows/deploy.yml`. The workflow is properly set up with the correct configuration for your repository. To enable deployment:
 
-```yaml
-name: Deploy to GitHub Pages
-
-on:
-  push:
-    branches: [main]
-  workflow_dispatch:
-
-jobs:
-  deploy:
-    name: Deploy to GitHub Pages
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18
-          cache: yarn
-      - name: Install dependencies
-        run: yarn install --frozen-lockfile
-      - name: Build website
-        run: yarn build
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./frontend/build
-```
+1. Make sure the Docusaurus configuration is correct (already updated):
+   - baseUrl should be `/Physical-AI-Humanoid-Robotics-/`
+   - projectName should be `Physical-AI-Humanoid-Robotics-`
+   - organizationName should be `1177rashid`
 
 2. Enable GitHub Pages in your repository settings:
    - Go to Settings > Pages

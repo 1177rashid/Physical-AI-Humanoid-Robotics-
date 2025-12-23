@@ -15,15 +15,15 @@ const config: Config = {
   },
 
   // Set the production url of your site here
-  url: 'https://your-github-username.github.io', // Replace with your GitHub Pages URL
+  url: 'https://1177rashid.github.io', // Replace with your GitHub Pages URL
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/ai-native-textbook/', // Adjust based on your repository name
+  baseUrl: '/Physical-AI-Humanoid-Robotics-/', // Adjust based on your repository name
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'your-username', // Usually your GitHub org/user name.
-  projectName: 'ai-native-textbook', // Usually your repo name.
+  organizationName: '1177rashid', // Usually your GitHub org/user name.
+  projectName: 'Physical-AI-Humanoid-Robotics-', // Usually your repo name.
 
   onBrokenLinks: 'throw',
 
@@ -92,7 +92,7 @@ const config: Config = {
           label: 'Textbook',
         },
         {
-          href: 'https://github.com/your-username/ai-native-textbook',
+          href: 'https://github.com/1177rashid/Physical-AI-Humanoid-Robotics-',
           label: 'GitHub',
           position: 'right',
         },
@@ -132,7 +132,7 @@ const config: Config = {
           items: [
             {
               label: 'GitHub',
-              href: 'https://github.com/your-username/ai-native-textbook',
+              href: 'https://github.com/1177rashid/Physical-AI-Humanoid-Robotics-',
             },
           ],
         },
